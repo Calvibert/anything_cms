@@ -10,7 +10,7 @@ class AuthorsTable extends Table
         $this->addBehavior('Timestamp');
     }
 
-    public function search($key)
+    public function search($key, $fields = null)
     {
         $key = explode(' ', $key);
         $conditions = [];
@@ -23,8 +23,12 @@ class AuthorsTable extends Table
 
         $authors = $this->find('all')->where([
             'or' => $conditions
-        ])->toArray();
+        ]);
 
-        return $authors;
+        if (!empty($fields)) {
+            $authors->select($fields);
+        }
+
+        return $authors->toArray();
     }
 }

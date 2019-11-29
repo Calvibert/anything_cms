@@ -30,6 +30,21 @@ class PostsController extends AppController
         }
     }
 
+    public function edit($id)
+    {
+        $this->set('post', $this->Posts->find('all')->where(['id' => $id])->first());
+
+        if ($this->request->is('post')) {
+            $postEntity = $this->Posts->get($id);
+            $postEntity->author = $this->request->getData('author');
+            $postEntity->title = $this->request->getData('title');
+            $postEntity->content = $this->request->getData('content');
+            $this->Posts->save($postEntity);
+
+            return $this->redirect(['action' => 'index']);
+        }
+    }
+
     public function disable($id)
     {
         $postEntity = $this->Posts->get($id);

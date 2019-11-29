@@ -72,4 +72,13 @@ class AuthorsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function autocomplete()
+    {
+        $this->viewBuilder()->setLayout('ajax');
+
+        $authors = $this->Authors->search($this->request->getQuery('key'), ['id', 'first_name', 'last_name', 'alias']);
+
+        $this->set('authors', $authors);
+    }
 }

@@ -22,11 +22,29 @@ use Cake\Utility\Inflector;
     </script>
 <?php else: ?>
     <input type="<?= $type ?>" id="<?= $field ?>" name="<?= $field ?>" value="<?= $defaults[$field] ?>"/>
+    <?php if (in_array($field, $autocompletes)): ?>
+        <div class="autocomplete" id="autocomplete-<?= $field ?>"></div>
+    <?php endif; ?>
 <?php endif; ?>
 <?php endforeach; ?>
 <br/>
 <input type="submit" value="Submit" class="btn btn-success"/>
 </form>
+
+<script>
 <?php foreach ($autocompletes as $autocomplete): ?>
-<?= $this->Html->script($autocomplete) ?>
+$("#<?= $autocomplete ?>").on('keypress', function() {
+    setTimeout(function() {
+        var key = $("#<?= $autocomplete ?>")[0].value;
+        $.ajax({
+            url: '<?= $this->Url->build(['controller' => $autocomplete, 'action' => 'autocomplete']) ?>?key='+key,
+            method: 'get',
+            success: function(response) {
+                JSON.parse(response);
+                $("#autocomplete-<?= $autocomplete ?>").html(response);
+            }
+        });
+    }, 100);
+});
 <?php endforeach; ?>
+</script>

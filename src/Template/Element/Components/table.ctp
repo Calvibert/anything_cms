@@ -1,3 +1,4 @@
+<!-- This component is not completed so it probably needs work -->
 <table class="table">
     <tr>
     <?php foreach ($headers as $header): ?>
