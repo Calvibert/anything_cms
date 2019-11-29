@@ -1,0 +1,9 @@
+#post-search-btn {
+    display: inline-block;
+    margin-top: -6px;
+    color: #fff;
+}
+#post-search-input {
+    width:20%;
+    display: inline-block;
+}
