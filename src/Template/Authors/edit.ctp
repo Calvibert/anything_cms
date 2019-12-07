@@ -7,7 +7,7 @@
         'first_name' => 'text',
         'last_name' => 'text',
         'alias' => 'text',
-        'date_of_birth' => 'dateofbirth',
+        'date_of_birth' => 'date',
         'about' => 'textarea'
     ],
     'defaults' => $author

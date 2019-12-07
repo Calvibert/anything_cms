@@ -8,7 +8,7 @@ use Cake\Utility\Inflector;
 <label for="<?= $field ?>"><?= Inflector::humanize($field) ?></label>
 <?php if ($type === 'textarea'): ?>
     <textarea name="<?= $field ?>"><?= $defaults[$field] ?></textarea>
-<?php elseif ($type === 'dateofbirth'): ?>
+<?php elseif ($type === 'date'): ?>
     <?= $this->Html->css('jquery-ui') ?>
     <?= $this->Html->script('jquery-ui') ?>
     <input type="text" id="<?= $field ?>" name="<?= $field ?>" value="<?= date('Y-m-d', strtotime($defaults[$field])) ?>"/>
@@ -20,6 +20,10 @@ use Cake\Utility\Inflector;
         dateFormat: 'yy-mm-dd'
     });
     </script>
+<?php elseif ($type === 'checkbox'): ?>
+    <br/>
+    <input type="checkbox" id="<?= $field ?>" name="<?= $field ?>"/>
+    <br/>
 <?php else: ?>
     <input type="<?= $type ?>" id="<?= $field ?>" name="<?= $field ?>" value="<?= $defaults[$field] ?>"/>
     <?php if (in_array($field, $autocompletes)): ?>

@@ -2,7 +2,7 @@
 use Cake\Core\Configure;
 
 Configure::write('App.objects', [
-    'Posts'      => false,
+    'Posts'      => true,
     'Authors'    => false,
     'Medias'     => false,
     'Products'   => true,
