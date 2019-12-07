@@ -205,8 +205,4 @@ Type::build('timestamp')
 /**
  * Platform-specific configurations
  */
-Configure::write('App.objects', [
-    'Posts'   => true,
-    'Authors' => true,
-    'Medias'  => true
-]);
+require __DIR__ . '/objects.php';
