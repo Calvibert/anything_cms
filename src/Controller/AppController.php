@@ -46,6 +46,18 @@ class AppController extends Controller
         ]);
         $this->loadComponent('Flash');
         $this->loadComponent('Tools');
+        $this->loadComponent('Auth', [
+            'loginRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'display',
+                'home'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'display',
+                'home'
+            ]
+        ]);
 
         /*
          * Enable the following component for recommended CakePHP security settings.
@@ -53,5 +65,10 @@ class AppController extends Controller
          */
         // $this->loadComponent('Security');
         $this->session = $this->request->getSession();
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['index', 'view', 'display']);
     }
 }
