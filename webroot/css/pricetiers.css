@@ -1,0 +1,9 @@
+.admin-card-container {
+    background-color: rgb(231, 231, 231);
+    border: 1px solid black;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+}
+.add-price-tier-btn {
+    border-radius: 20px;
+}
