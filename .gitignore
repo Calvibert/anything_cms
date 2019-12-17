@@ -41,3 +41,7 @@ nbproject/*
 .sass-cache/
 
 *.log
+
+# Svelte Files
+/node_modules/
+/public/build/
