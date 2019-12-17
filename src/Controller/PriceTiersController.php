@@ -28,7 +28,7 @@ class PriceTiersController extends AppController
                 $ptEntity = $this->PriceTiers->newEntity();
                 $ptEntity->price = $price;
                 $ptEntity->product_id = $productId;
-                $ptEntity->sort_order = $i + 1;
+                $ptEntity->tier_order = $i + 1;
                 $this->PriceTiers->save($ptEntity);
             }
 
