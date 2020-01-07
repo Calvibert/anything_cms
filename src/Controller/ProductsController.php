@@ -13,6 +13,7 @@ class ProductsController extends AppController
     {
         parent::initialize();
         $this->loadModel('Products');
+        $this->loadModel('Medias');
         $this->Auth->allow(['search', 'searchadmin']);
     }
 
@@ -27,8 +28,15 @@ class ProductsController extends AppController
 
         if ($this->request->is('post')) {
             $productEntity = $this->Products->newEntity($this->request->getData());
-            $productEntity->listed_by = 00000001;
-            $this->Products->save($productEntity);
+            $productEntity->listed_by = $this->Auth->user('id');
+            $productEntity = $this->Products->save($productEntity);
+
+            if (!empty($this->request->getData('photo')['size'])) {
+                $this->Medias->savePhpUpload($this->request->getData('photo'), [
+                    'objectId' => $productEntity['id'],
+                    'objectTable' => 'products'
+                ]);
+            }
 
             return $this->redirect(['controller' => 'PriceTiers', 'action' => 'add', $productEntity->id]);
         }

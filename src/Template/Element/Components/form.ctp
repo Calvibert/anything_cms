@@ -3,7 +3,7 @@
 use Cake\Utility\Inflector;
 ?>
 
-<form action="<?= $url ?>" method="<?= $method ?>">
+<form action="<?= $url ?>" method="<?= $method ?>" enctype="multipart/form-data">
 <?php foreach ($fields as $field => $type): ?>
 <label for="<?= $field ?>"><?= Inflector::humanize($field) ?></label>
 <?php if ($type === 'textarea'): ?>
@@ -23,6 +23,10 @@ use Cake\Utility\Inflector;
 <?php elseif ($type === 'checkbox'): ?>
     <br/>
     <input type="checkbox" id="<?= $field ?>" name="<?= $field ?>"/>
+    <br/>
+<?php elseif ($type === 'photo'): ?>
+    <br/>
+    <input type="file" id="<?= $field ?>" name="<?= $field ?>"/>
     <br/>
 <?php else: ?>
     <input type="<?= $type ?>" id="<?= $field ?>" name="<?= $field ?>" value="<?= $defaults[$field] ?>"/>
