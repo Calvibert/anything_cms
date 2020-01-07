@@ -1,0 +1,20 @@
+After install, I did the following:
+
+- Follow this guide (lamp stack ubuntu 16.04)
+Install php extensions php-intl and php-mbstring
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-16-04
+
+- Install phpmyadmin
+https://www.hostingadvice.com/how-to/install-phpmyadmin-on-ubuntu/
+
+- Run the commands in bootstrap.sh, specifically:
+sudo rm -rf /var/www
+sudo ln -fs /vagrant /var/www
+
+- Inside /etc/apache2/apache2.conf, in the directive <Directory /var/www/>, set AllowOverride All
+
+- Inside /etc/apache2/sites-available/000-default.conf and /etc/apache2/sites-available/default-ssl.conf, set DocumentRoot /var/www/webroot
+
+- Enable mod_rewrite for .htaccess: sudo a2enmod rewrite
+
+- Restart apache: sudo systemctl restart apache2
