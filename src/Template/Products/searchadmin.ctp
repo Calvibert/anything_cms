@@ -8,14 +8,6 @@
     </tr>
 <?php foreach ($products as $product): ?>
     <tr>
-        <div class="product-card">
-            <table>
-                <tr><td><?= $product['title'] ?></td></tr>
-                <tr><td>Picture</td></tr>
-            </table>
-        </div>
-    </tr>
-    <!-- <tr>
         <td><?= $product['title'] ?></td>
         <td><?= $product['model_part'] ?></td>
         <td><?= $product['description'] ?></td>
@@ -29,6 +21,6 @@
             <?php endif; ?>
             <?= $this->Html->link(__('Delete'), ['action' => 'delete', $product['id']], ['class' => 'btn btn-sm btn-danger']) ?>
         </td>
-    </tr> -->
+    </tr>
 <?php endforeach; ?>
 </table>

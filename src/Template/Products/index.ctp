@@ -1,7 +1,7 @@
 <br/>
 <a href="<?= $this->Url->build(['action' => 'add']) ?>" class="btn btn-primary"><?= __('Add') ?></a>
 <br/><br/>
-<input id="product-search-input" value="<?= $this->session->read('product-search-key') ?>" class="form-control"/>
+<input id="product-search-input" value="<?= $this->session->read('product-searchadmin-key') ?>" class="form-control"/>
 <a id="product-search-btn" class="btn btn-primary"><?= __('Search') ?></a>
 <br/><br/>
 <div id="product-search-target"></div>
@@ -23,7 +23,7 @@ function productSearch(key) {
     }
     
     $.ajax({
-        url: '<?= $this->Url->build(['action' => 'search']) ?>?key='+key,
+        url: '<?= $this->Url->build(['action' => 'searchadmin']) ?>?key='+key,
         method: 'GET',
         success: function(response) {
             $("#product-search-target").html(response);

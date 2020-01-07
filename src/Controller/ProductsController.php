@@ -13,7 +13,7 @@ class ProductsController extends AppController
     {
         parent::initialize();
         $this->loadModel('Products');
-        $this->Auth->allow(['search']);
+        $this->Auth->allow(['search', 'searchadmin']);
     }
 
     public function index()
@@ -46,6 +46,16 @@ class ProductsController extends AppController
         $this->viewBuilder()->setLayout('ajax');
 
         $this->session->write('product-search-key', $this->request->getQuery('key'));
+        $products = $this->Products->search($this->request->getQuery('key'));
+
+        $this->set('products', $products);
+    }
+
+    public function searchadmin()
+    {
+        $this->viewBuilder()->setLayout('ajax');
+
+        $this->session->write('product-searchadmin-key', $this->request->getQuery('key'));
         $products = $this->Products->search($this->request->getQuery('key'));
 
         $this->set('products', $products);

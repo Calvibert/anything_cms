@@ -2,7 +2,7 @@
 import { onMount } from "svelte";
 var data = "";
   	onMount(async function() {
-        const response = await fetch("https://anythingcms/products/search?key=test", {
+        const response = await fetch("http://192.168.33.10/products/search?key=test", {
 			method: 'GET',
 			mode: 'cors',
 			headers: new Headers({
