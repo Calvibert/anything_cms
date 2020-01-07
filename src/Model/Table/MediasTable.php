@@ -18,21 +18,24 @@ class MediasTable extends Table
      */
     public function savePhpUpload($data, $options = [])
     {
-        $result = $this->saveFile($data);
+        $result = $this->saveFile($data, 'img/'.$options['objectTable'].'/');
+        if (!$result) {
+            return false;
+        }
 
         $entity = $this->newEntity();
-        $entity->source = $options['objectTable'] .'/'. $data['name'];
+        $entity->source = 'img/' . $options['objectTable'] .'/'. $data['name'];
         $entity->object_table = $options['objectTable'];
         $entity->object_id = $options['objectId'];
         $entity->description = $options['description'];
         $this->save($entity);
     }
 
-    private function saveFile($data)
+    private function saveFile($data, $path)
     {
-        $tmpName = $data['tmp'];
+        $tmpName = $data['tmp_name'];
         $finalName = $data['name'];
-        if (move_uploaded_file($tmpName, $finalName)) {
+        if (move_uploaded_file($tmpName, $path.$finalName)) {
             return true;
         }
         return false;
