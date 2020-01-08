@@ -1,10 +1,13 @@
 <script>
-    import Search from "./Components/Search.svelte";
-    import Welcome from "./Components/Welcome.svelte";
+    import { writable } from 'svelte/store';
+
+    import router, { curRoute } from './router.js';
 </script>
+
+<div id="content">
 
 <h1>Zuly logo ici</h1>
 
-<Welcome />
+<svelte:component this={router[$curRoute]}/>
 
-<Search />
+</div>

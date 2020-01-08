@@ -1,11 +1,12 @@
 <script>
 export let data;
-import {commit} from "./Search.svelte";
+import RouterLink from './RouterLink.svelte';
 
 function destroy() {
     this.destroy();
 }
 </script>
+
 <style>
 .card-image {
     max-width: 200px;
@@ -20,6 +21,6 @@ function destroy() {
 <table>
 <tr><td>{data['title']}</td></tr>
 <tr><td><img src="http://192.168.33.10/img/{data['image']}" alt="{data['title']}" class="card-image"/></td></tr>
-<tr><td><button on:click={() => {}}>Commit now!</button></td></tr>
+<tr><td><button><RouterLink path={'view/'} name={'Commit now!'}/></button></td></tr>
 </table>
 </div>

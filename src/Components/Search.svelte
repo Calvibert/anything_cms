@@ -1,6 +1,5 @@
 <script>
 import Card from "./Card.svelte";
-import { onMount } from "svelte";
 
 let data = "";
 let key = "";
