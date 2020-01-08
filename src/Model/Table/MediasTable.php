@@ -24,7 +24,7 @@ class MediasTable extends Table
         }
 
         $entity = $this->newEntity();
-        $entity->source = 'img/' . $options['objectTable'] .'/'. $data['name'];
+        $entity->source = $options['objectTable'] .'/'. $data['name'];
         $entity->object_table = $options['objectTable'];
         $entity->object_id = $options['objectId'];
         $entity->description = $options['description'];

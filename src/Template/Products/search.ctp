@@ -11,7 +11,8 @@
         <div class="product-card">
             <table>
                 <tr><td><?= $product['title'] ?></td></tr>
-                <tr><td>Picture</td></tr>
+                <tr><td><?= $this->Html->image($product['image'], ['fullBase' => true, 'width' => '200']) ?></td></tr>
+                <tr><td><button><a href="">Commit Now!</a></button></td></tr>
             </table>
         </div>
     </tr>

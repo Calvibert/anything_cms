@@ -2,6 +2,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 
 class ProductsTable extends Table
 {
@@ -22,6 +23,23 @@ class ProductsTable extends Table
             ]
         ])->toArray();
 
+        foreach ($products as &$product) {
+            $this->getAssociatedImage($product);
+        }
+
         return $products;
+    }
+
+    private function getAssociatedImage(&$product)
+    {
+        $image = TableRegistry::get('Medias')->find('all')->where([
+            'object_table' => 'products',
+            'object_id' => $product['id']
+        ])->first();
+
+        $product['image'] = $image['source'];
+        if (empty($image['source'])) {
+            $product['image'] = 'products/coming-soon.jpg';
+        }
     }
 }
