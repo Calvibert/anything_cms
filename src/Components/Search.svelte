@@ -1,5 +1,6 @@
 <script>
 import Card from "./Card.svelte";
+import { onMount } from "svelte";
 
 let data = "";
 let key = "";
@@ -24,6 +25,9 @@ async function search() {
         if (response.ok) { // if HTTP-status is 200-299
             const text = await response.text();
             data = JSON.parse(text);
+            if (data.length === 0) {
+                status = 'nothing';
+            }
         }
 }
 </script>
@@ -36,6 +40,8 @@ async function search() {
 {:else}
     {#if status === 'waiting'}
         <p>Loading...</p>
+    {:else if status === 'nothing'}
+        <p>Your search found no results</p>
     {/if}
 <p></p>
 {/each}
