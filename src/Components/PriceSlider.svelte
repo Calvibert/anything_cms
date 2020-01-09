@@ -58,19 +58,14 @@ td {
     font-weight: 650;
     color: green;
 }
-.price-final {
-    width: 5%;
-}
-.progress-container {
-    display: inline-flex;
-}
+
 </style>
 
 <br/><br/><br/>
 <table>
 <tr>
-{#each prices as price}
-<td class="price">${price['price']}</td>
+{#each prices as price, index}
+<td class="price {progressBars[index] !== 0 && progressBars[index] !== undefined ? 'reached': ''}">${price['price']}</td>
 {/each}
 </tr>
 <tr>
@@ -83,8 +78,8 @@ td {
 
 </tr>
 <tr>
-{#each prices as price}
-<td>{price['amount']}</td>
+{#each prices as price, index}
+<td class="{progressBars[index] !== 0 && progressBars[index] !== undefined ? 'reached': ''}">{price['amount']}</td>
 {/each}
 </tr>
 </table>

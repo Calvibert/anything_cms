@@ -46,6 +46,7 @@ onMount(async () => {
 <table>
 <tr><td><h1>{data['title']}</h1></td></tr>
 <tr><td><p>{data['description']}</p></td></tr>
+<tr><td><button>Commit Now!</button></td></tr>
 </table>
 
 </td></tr>
