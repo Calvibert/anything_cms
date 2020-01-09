@@ -14,6 +14,7 @@ class ProductsController extends AppController
         parent::initialize();
         $this->loadModel('Products');
         $this->loadModel('Medias');
+        $this->loadModel('Campaigns');
         $this->Auth->allow(['search', 'searchadmin']);
     }
 
@@ -47,10 +48,9 @@ class ProductsController extends AppController
         $this->viewBuilder()->setLayout('ajax');
 
         $id = $this->request->query('key');
-        // $product = $this->Products->getProductForView($id);
         $product = $this->Products->find('all')->where(['id' => $id])->first();
         $this->Medias->getMedia($product, 'products');
-        $this->Campaigns->getCampaign($product);
+        $this->Campaigns->getCampaign($product, 'products');
 
         $this->set('product', $product);
     }

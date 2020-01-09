@@ -1,6 +1,7 @@
 <script>
 import { onMount } from 'svelte';
 import getUrlVars from "../helper.js";
+import PriceSlider from './PriceSlider.svelte';
 
 let id;
 let data;
@@ -48,10 +49,13 @@ onMount(async () => {
 </table>
 
 </td></tr>
-{#if data['campaigns'].length === 0}
+{#if data['campaign'].length === 0}
 <tr><td>No campaigns at this time</td></tr>
 {:else}
-<tr><td>{data['campaigns'][0]['name']}</td></tr>
+<tr><td>{data['campaign']['name']}</td></tr>
+
+<tr><td><PriceSlider prices={data['campaign']['prices']} commits={data['campaign']['commits']}/></td></tr>
+
 {/if}
 </table>
 {/if}

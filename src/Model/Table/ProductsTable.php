@@ -25,7 +25,7 @@ class ProductsTable extends Table
         ])->toArray();
 
         foreach ($products as &$product) {
-            $this->getAssociatedImage($product);
+            TableRegistry::get('Medias')->getMedia($product, 'products');
         }
 
         return $products;

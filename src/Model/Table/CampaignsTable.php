@@ -20,8 +20,9 @@ class CampaignsTable extends Table
                 'object_id' => $object['id'],
                 'object_table' => $table
             ])
-            ->contain('Prices')
             ->first();
+
+        TableRegistry::get('Prices')->getPrices($campaign, 'campaigns');
 
         $object['campaign'] = $campaign;
     }

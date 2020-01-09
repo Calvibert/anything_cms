@@ -23,7 +23,7 @@ class PricesController extends AppController
         }
         if ($this->request->is('post')) {
             $prices = $this->request->getData('price');
-            sort($prices);
+            rsort($prices);
             foreach ($prices as $i => $price) {
                 $priceEntity = $this->Prices->newEntity();
                 $priceEntity->price = $price;
@@ -53,7 +53,6 @@ class PricesController extends AppController
         }
 
         if ($this->request->is('post')) {
-            // var_dump($this->request->getData());die();
             $this->Prices->removeEntries($objectId, $objectTable);
 
             $newPrices = $this->request->getData('price');

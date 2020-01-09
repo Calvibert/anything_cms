@@ -18,4 +18,18 @@ class PricesTable extends Table
             'object_table' => $objectTable
         ]);
     }
+
+    public function getPrices(&$object, $objectTable)
+    {
+        $prices = $this->find('all')
+            ->select(['price', 'tier_order', 'amount'])
+            ->where([
+                'object_id' => $object['id'],
+                'object_table' => $objectTable
+            ])
+            ->order(['amount' => 'ASC'])
+            ->toArray();
+
+        $object['prices'] = $prices;
+    }
 }
