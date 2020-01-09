@@ -7,8 +7,5 @@
         'author' => 'text',
         'title' => 'text',
         'content' => 'textarea'
-    ],
-    'autocompletes' => [
-        'author'
     ]
 ]) ?>

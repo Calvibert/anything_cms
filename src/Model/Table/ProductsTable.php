@@ -10,7 +10,8 @@ class ProductsTable extends Table
     {
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('PriceTiers');
+        $this->hasMany('Campaigns')
+            ->setForeignKey('product_id');
     }
 
     public function search($key)
@@ -30,7 +31,7 @@ class ProductsTable extends Table
         return $products;
     }
 
-    private function getAssociatedImage(&$product)
+    public function getAssociatedImage(&$product)
     {
         $image = TableRegistry::get('Medias')->find('all')->where([
             'object_table' => 'products',
@@ -41,5 +42,20 @@ class ProductsTable extends Table
         if (empty($image['source'])) {
             $product['image'] = 'products/coming-soon.jpg';
         }
+    }
+
+    public function autocomplete($key)
+    {
+        return $this->find('all')
+            ->select(['title'])
+            ->where(['title LIKE "%'.$key.'%"'])
+            ->toArray();
+    }
+
+    public function getProductByName($name)
+    {
+        return $this->find('all')
+            ->where(['title LIKE "%'.$name.'%"'])
+            ->first();
     }
 }

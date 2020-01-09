@@ -13,6 +13,7 @@ class CampaignsController extends AppController
     {
         parent::initialize();
         $this->loadModel('Campaigns');
+        $this->loadModel('Products');
         $this->Tools->requireAdmin();
     }
 
@@ -24,7 +25,10 @@ class CampaignsController extends AppController
     public function add()
     {
         if ($this->request->is('post')) {
+            $productId = $this->Products->getProductByName($this->request->getData('products'))['id'];
             $campaignEntity = $this->Campaigns->newEntity($this->request->getData());
+            $campaignEntity->listed_by = $this->Auth->user('id');
+            $campaignEntity->product_id = $productId;
             $this->Campaigns->save($campaignEntity);
 
             return $this->redirect(['action' => 'index']);

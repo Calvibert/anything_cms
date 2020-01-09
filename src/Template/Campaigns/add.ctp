@@ -8,7 +8,11 @@
         'recurring' => 'checkbox',
         'description' => 'textarea',
         'start' => 'date',
-        'end' => 'date'
+        'end' => 'date',
+        'product' => [
+            'type' => 'autofill',
+            'field' => 'products'
+        ]
     ],
     'defaults' => [
         'start' => date("Y-m-d", strtotime("+1 day")),

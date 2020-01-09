@@ -42,11 +42,15 @@ class ProductsController extends AppController
         }
     }
 
-    public function view($id)
+    public function view()
     {
-        $this->Tools->requireAdmin();
+        $this->viewBuilder()->setLayout('ajax');
 
-        $this->set('product', $this->Products->find('all')->where(['id' => $id])->contain('PriceTiers')->first());
+        $id = $this->request->query('key');
+        $product = $this->Products->find('all')->where(['id' => $id])->contain('Campaigns')->first();
+        $this->Products->getAssociatedImage($product);
+
+        $this->set('product', $product);
     }
 
     public function search()
@@ -65,6 +69,20 @@ class ProductsController extends AppController
 
         $this->session->write('product-searchadmin-key', $this->request->getQuery('key'));
         $products = $this->Products->search($this->request->getQuery('key'));
+
+        $this->set('products', $products);
+    }
+
+    public function autocomplete()
+    {
+        $this->viewBuilder()->setLayout('ajax');
+
+        $key = $this->request->getQuery('key');
+        $results = $this->Products->autocomplete($key);
+        $products = [];
+        foreach ($results as $result) {
+            $products[] = $result['title'];
+        }
 
         $this->set('products', $products);
     }
