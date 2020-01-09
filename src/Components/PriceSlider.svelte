@@ -50,10 +50,6 @@ td {
 .price {
     text-align: center;
 }
-.final {
-    text-align: right;
-    width: 5%;
-}
 .reached {
     font-weight: 650;
     color: green;
