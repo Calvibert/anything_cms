@@ -31,6 +31,19 @@ class MediasTable extends Table
         $this->save($entity);
     }
 
+    public function getMedia(&$object, $table)
+    {
+        $image = $this->find('all')->where([
+            'object_table' => $table,
+            'object_id' => $object['id']
+        ])->first();
+
+        $object['image'] = $image['source'];
+        if (empty($image)) {
+            $object['image'] = 'products/coming-soon.jpg';
+        }
+    }
+
     private function saveFile($data, $path)
     {
         $tmpName = $data['tmp_name'];

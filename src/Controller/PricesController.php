@@ -7,12 +7,12 @@ use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use App\Model\Entity\Post;
 
-class PriceTiersController extends AppController
+class PricesController extends AppController
 {
     public function initialize()
     {
         parent::initialize();
-        $this->loadModel('PriceTiers');
+        $this->loadModel('Prices');
         $this->Tools->requireAdmin();
     }
 
@@ -25,11 +25,11 @@ class PriceTiersController extends AppController
             $prices = $this->request->getData('price');
             sort($prices);
             foreach ($prices as $i => $price) {
-                $ptEntity = $this->PriceTiers->newEntity();
+                $ptEntity = $this->Prices->newEntity();
                 $ptEntity->price = $price;
                 $ptEntity->product_id = $productId;
                 $ptEntity->tier_order = $i + 1;
-                $this->PriceTiers->save($ptEntity);
+                $this->Prices->save($ptEntity);
             }
 
             return $this->redirect(['controller' => 'Products', 'action' => 'view', $productId]);

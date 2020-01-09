@@ -7,7 +7,7 @@ Configure::write('App.objects', [
     'Medias'     => false,
     'Products'   => true,
     'Users'      => true,
-    'PriceTiers' => true,
+    'Prices'     => true,
     'Campaigns'  => true,
     'Orders'     => true,
     'Commits'    => true

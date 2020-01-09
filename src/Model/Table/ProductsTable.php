@@ -31,19 +31,6 @@ class ProductsTable extends Table
         return $products;
     }
 
-    public function getAssociatedImage(&$product)
-    {
-        $image = TableRegistry::get('Medias')->find('all')->where([
-            'object_table' => 'products',
-            'object_id' => $product['id']
-        ])->first();
-
-        $product['image'] = $image['source'];
-        if (empty($image['source'])) {
-            $product['image'] = 'products/coming-soon.jpg';
-        }
-    }
-
     public function autocomplete($key)
     {
         return $this->find('all')
@@ -57,5 +44,10 @@ class ProductsTable extends Table
         return $this->find('all')
             ->where(['title LIKE "%'.$name.'%"'])
             ->first();
+    }
+
+    public function getProductForView($id)
+    {
+        $this->Products->find('all')->where(['id' => $id])->contain('Campaigns')->first();
     }
 }

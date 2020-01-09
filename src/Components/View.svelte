@@ -51,7 +51,7 @@ onMount(async () => {
 {#if data['campaigns'].length === 0}
 <tr><td>No campaigns at this time</td></tr>
 {:else}
-
+<tr><td>{data['campaigns'][0]['name']}</td></tr>
 {/if}
 </table>
 {/if}

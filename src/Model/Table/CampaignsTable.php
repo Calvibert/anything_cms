@@ -10,6 +10,19 @@ class CampaignsTable extends Table
     {
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('PriceTiers');
+        $this->hasMany('Prices');
+    }
+
+    public function getCampaign(&$object, $table)
+    {
+        $campaign = $this->find('all')
+            ->where([
+                'object_id' => $object['id'],
+                'object_table' => $table
+            ])
+            ->contain('Prices')
+            ->first();
+
+        $object['campaign'] = $campaign;
     }
 }

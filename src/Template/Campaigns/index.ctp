@@ -18,7 +18,7 @@ $("#campaign-search-btn").on('click', function() {
 });
 function campaignSearch(key) {
     key = $("#campaign-search-input")[0].value;
-    if ('<?= (!empty($this->session->read('campaign-search-key')))?$this->session->read('search-key'): 'undefined' ?>' !== 'undefined' && key !== undefined) {
+    if ('<?= (!empty($this->session->read('campaign-search-key')))?$this->session->read('campaign-search-key'): 'undefined' ?>' !== 'undefined' && key !== undefined) {
         key = '<?= $this->session->read('campaign-search-key') ?>'
     }
     

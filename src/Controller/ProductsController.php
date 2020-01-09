@@ -38,7 +38,7 @@ class ProductsController extends AppController
                 ]);
             }
 
-            return $this->redirect(['controller' => 'PriceTiers', 'action' => 'add', $productEntity->id]);
+            return $this->redirect(['controller' => 'campaigns', 'action' => 'add', $productEntity->id]);
         }
     }
 
@@ -47,8 +47,10 @@ class ProductsController extends AppController
         $this->viewBuilder()->setLayout('ajax');
 
         $id = $this->request->query('key');
-        $product = $this->Products->find('all')->where(['id' => $id])->contain('Campaigns')->first();
-        $this->Products->getAssociatedImage($product);
+        // $product = $this->Products->getProductForView($id);
+        $product = $this->Products->find('all')->where(['id' => $id])->first();
+        $this->Medias->getMedia($product, 'products');
+        $this->Campaigns->getCampaign($product);
 
         $this->set('product', $product);
     }

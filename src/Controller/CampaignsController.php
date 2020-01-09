@@ -35,6 +35,13 @@ class CampaignsController extends AppController
         }
     }
 
+    public function edit($id)
+    {
+        $campaign = $this->Campaigns->get($id);
+
+        $this->set('campaign', $campaign);
+    }
+
     public function search()
     {
         $this->viewBuilder()->layout('ajax');
