@@ -46,4 +46,5 @@ nbproject/*
 /node_modules/
 /public/build/
 
-webroot/img/products/*
+/webroot/img/products/*
+/.vagrant
