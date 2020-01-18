@@ -8,26 +8,26 @@ let status = "";
 async function search() {
     status = "waiting";
     const response = await fetch("http://192.168.33.10/products/search?key="+key, {
-            method: 'GET',
-            mode: 'cors',
-            headers: new Headers({
-                'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
-                'Cache-Control': 'no-cache',
-                'Connection': 'keep-alive',
-                'Cookie': 'CAKEPHP=bqtbcn9s9q1kkaejp6nftss22o954b4s',
-                'Host': 'anythingcms',
-                'Pragma': 'no-cache'
-            })
-        });
-        if (response.ok) {
-            const text = await response.text();
-            data = JSON.parse(text);
-            if (data.length === 0) {
-                status = 'nothing';
-            }
+        method: 'GET',
+        mode: 'cors',
+        headers: new Headers({
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive',
+            'Cookie': 'CAKEPHP=bqtbcn9s9q1kkaejp6nftss22o954b4s',
+            'Host': 'anythingcms',
+            'Pragma': 'no-cache'
+        })
+    });
+    if (response.ok) {
+        const text = await response.text();
+        data = JSON.parse(text);
+        if (data.length === 0) {
+            status = 'nothing';
         }
+    }
 }
 </script>
 
