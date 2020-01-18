@@ -1,13 +1,25 @@
 <script>
     import { writable } from 'svelte/store';
+    import { getContext } from 'svelte';
 
-    import router, { curRoute } from './router.js';
+    import routes, { curRoute } from './router.js';
 </script>
 
-<div id="content">
+<style>
+.content {
+    max-width: 1140px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: hidden;
+}
+</style>
 
-<h1>Zuly logo ici</h1>
+<div class="content">
 
-<svelte:component this={router[$curRoute]}/>
+<h1>Zuly logo ici<button on:click={() => {curRoute.set('/signup')}}>My Account</button></h1>
+
+<svelte:component this={routes[$curRoute]}/>
 
 </div>

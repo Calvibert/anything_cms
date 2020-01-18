@@ -1,5 +1,5 @@
 <script>
-import { curRoute } from '../router.js';
+// import { curRoute } from '../router.js';
 
 export let path;
 export let name;

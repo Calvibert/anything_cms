@@ -25,7 +25,6 @@ onMount(async () => {
     if (response.ok) {
         const text = await response.text();
         data = JSON.parse(text);
-        console.log(data);
     }
 });
 </script>
@@ -50,13 +49,13 @@ onMount(async () => {
 </table>
 
 </td></tr>
-{#if data['campaign'].length === 0}
+{#if data['campaign']['name'] === undefined}
 <tr><td>No campaigns at this time</td></tr>
 {:else}
 <tr><td>{data['campaign']['name']}</td></tr>
-
+{#if data['campaign']['prices'].length > 0}
 <tr><td><PriceSlider prices={data['campaign']['prices']} commits={data['campaign']['commits']}/></td></tr>
-
+{/if}
 {/if}
 </table>
 {/if}

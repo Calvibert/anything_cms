@@ -21,7 +21,7 @@ async function search() {
                 'Pragma': 'no-cache'
             })
         });
-        if (response.ok) { // if HTTP-status is 200-299
+        if (response.ok) {
             const text = await response.text();
             data = JSON.parse(text);
             if (data.length === 0) {
