@@ -45,3 +45,5 @@ nbproject/*
 # Svelte Files
 /node_modules/
 /public/build/
+
+webroot/img/products/*
