@@ -62,18 +62,60 @@ async function signup () {
 </script>
 
 <style>
-
+input {
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    caret-color: red;
+}
+.input-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 5px #f0f0f0;
+    margin: 15px 25px;
+}
+table {
+    width: 100%;
+}
+td {
+    border-bottom: 1px solid #fafafa;
+    padding: 5px;
+}
+.td-icon {
+    width: 15px;
+}
 </style>
 
 <h1>Sign Up</h1>
 {#if error}
 <h2>{error}</h2>
 {/if}
+<div class="input-container">
+<table>
+<tr>
+<td class="td-icon">Img</td>
+<td>
 <label for="email">Email</label>
 <input type="text" name="email" id="email" bind:value={email} required/>
+</td>
+</tr>
+
+<tr>
+<td class="td-icon">Img</td>
+<td>
 <label for="username">Username</label>
 <input type="text" name="username" id="username" bind:value={username} required/>
+</td>
+</tr>
+
+<tr>
+<td class="td-icon">Img</td>
+<td>
 <label for="password">Password</label>
 <input type="password" name="password" id="password" bind:value={password} required/>
-<br/>
-<input on:click={signup} type="submit" value="Submit"/>
+</td>
+</tr>
+</table>
+</div>
+
+<div on:click={signup} class="btn" type="submit">SIGN UP<span class="btn-arrow">&nbsp;&nbsp;&rsaquo;&nbsp;&nbsp;</span></div>

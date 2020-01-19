@@ -7,6 +7,7 @@
 
 <style>
 .content {
+    background: #fafafa;
     max-width: 1140px;
     padding-right: 15px;
     padding-left: 15px;
@@ -18,7 +19,7 @@
 
 <div class="content">
 
-<h1>Zuly logo ici<button on:click={() => {curRoute.set('/signup')}}>My Account</button></h1>
+<h1 on:click={() => {curRoute.set('/')}}>Zuly logo ici</h1><button on:click={() => {curRoute.set('/signup')}}>My Account</button>
 
 <svelte:component this={routes[$curRoute]}/>
 
