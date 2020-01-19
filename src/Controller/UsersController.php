@@ -26,6 +26,22 @@ class UsersController extends AppController
 
     public function add()
     {
+        $this->viewBuilder()->setLayout('ajax');
+
+        if ($this->request->is('post')) {
+            $user = $this->Users->newEntity();
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->set('user', $user);
+                $this->set('error', false);
+                $this->render();
+            }
+        }
+        $this->set('error', true);
+    }
+
+    public function addAdmin()
+    {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());

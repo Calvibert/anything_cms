@@ -3,6 +3,8 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\Rule\IsUnique;
+use Cake\ORM\RulesChecker;
 
 class UsersTable extends Table
 {
@@ -14,8 +16,6 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator)
     {
         return $validator
-            ->notEmpty('first_name', "Un prenom d'utilisateur est nécessaire")
-            ->notEmpty('last_name', "Un nom de famille d'utilisateur est nécessaire")
             ->notEmpty('email', "Un nom d'utilisateur est nécessaire")
             ->notEmpty('password', 'Un mot de passe est nécessaire')
             ->notEmpty('role', 'Un role est nécessaire')
@@ -23,6 +23,13 @@ class UsersTable extends Table
                 'rule' => ['inList', ['admin', 'regular']],
                 'message' => 'Merci de rentrer un role valide'
             ]);
+    }
+
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['username', 'email']));
+
+        return $rules;
     }
 
     public function search($key)
