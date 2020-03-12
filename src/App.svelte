@@ -1,8 +1,17 @@
 <script>
-    import { writable } from 'svelte/store';
-    import { getContext } from 'svelte';
+import { writable } from 'svelte/store';
+import { afterUpdate } from 'svelte';
+import routes, { mainRoute } from './router.js';
+import Footer from './Components/Main/Footer.svelte';
 
-    import routes, { curRoute } from './router.js';
+let curRoute;
+afterUpdate(() => {
+    if ($mainRoute === '/') {
+        curRoute = '/';
+        return 0;
+    }
+    curRoute = '/'+$mainRoute.split('/')[1];
+});
 </script>
 
 <style>
@@ -15,12 +24,19 @@
     margin-left: auto;
     overflow: hidden;
 }
+.logo {
+    margin: auto;
+    text-align: center;
+    margin-top: 5px;
+}
 </style>
 
 <div class="content">
 
-<h1 on:click={() => {curRoute.set('/')}}>Zuly logo ici</h1><button on:click={() => {curRoute.set('/signup')}}>My Account</button>
+<div class="logo" on:click={() => {mainRoute.set('/')}}><img src="img/icons/general/logo.png" alt="logo"/></div>
 
-<svelte:component this={routes[$curRoute]}/>
+<svelte:component this={routes[curRoute]}/>
 
 </div>
+
+<Footer/>

@@ -1,5 +1,4 @@
 <script>
-import Input from './Form/Input.svelte';
 import validator from 'validator';
 
 let email;
@@ -66,7 +65,7 @@ input {
     border: none;
     margin: 0px;
     padding: 0px;
-    caret-color: red;
+    caret-color: #006cff;
 }
 .input-container {
     background: #fff;
@@ -86,7 +85,6 @@ td {
 }
 </style>
 
-<h1>Sign Up</h1>
 {#if error}
 <h2>{error}</h2>
 {/if}
@@ -95,16 +93,8 @@ td {
 <tr>
 <td class="td-icon">Img</td>
 <td>
-<label for="email">Email</label>
+<label for="email">Username/Email</label>
 <input type="text" name="email" id="email" bind:value={email} required/>
-</td>
-</tr>
-
-<tr>
-<td class="td-icon">Img</td>
-<td>
-<label for="username">Username</label>
-<input type="text" name="username" id="username" bind:value={username} required/>
 </td>
 </tr>
 
@@ -118,4 +108,4 @@ td {
 </table>
 </div>
 
-<div on:click={signup} class="btn" type="submit">SIGN UP<span class="btn-arrow">&nbsp;&nbsp;&rsaquo;&nbsp;&nbsp;</span></div>
+<div on:click={signup} class="btn" type="submit">LOGIN</div>
