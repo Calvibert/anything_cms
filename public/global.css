@@ -4,7 +4,8 @@ html, body {
 	height: 100%;
 }
 body {
-    color: #fff;
+    background: #fff;
+    color: #000;
 	margin: 0;
 	padding: 8px;
 	box-sizing: border-box;
@@ -59,6 +60,12 @@ input[type="range"] {
     color: #006cff;
     border-radius: 15px;
     font-size: 20px;
+}
+.pull-right {
+    float: right;
+}
+.pull-left {
+    float: left;
 }
 /* button {
 	color: #333;

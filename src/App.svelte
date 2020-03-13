@@ -3,6 +3,7 @@ import { writable } from 'svelte/store';
 import { afterUpdate } from 'svelte';
 import routes, { mainRoute } from './router.js';
 import Footer from './Components/Main/Footer.svelte';
+import Header from './Components/Main/Header.svelte';
 
 let curRoute;
 afterUpdate(() => {
@@ -24,19 +25,12 @@ afterUpdate(() => {
     margin-left: auto;
     overflow: hidden;
 }
-.logo {
-    margin: auto;
-    text-align: center;
-    margin-top: 5px;
-}
 </style>
 
+<Header/>
+
 <div class="content">
-
-<div class="logo" on:click={() => {mainRoute.set('/')}}><img src="img/icons/general/logo.png" alt="logo"/></div>
-
 <svelte:component this={routes[curRoute]}/>
-
 </div>
 
 <Footer/>
