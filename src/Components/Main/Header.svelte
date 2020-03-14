@@ -18,8 +18,8 @@ import { mainRoute } from '../../router.js';
 }
 </style>
 
-<div class="logo" on:click={() => {mainRoute.set('/')}}>
-<span class="pull-left"><img src="img/icons/menu/menu.svg" alt="Menu"/></span>
-<img src="img/icons/general/logo.png" alt="logo"/>
-<span class="pull-right"><img src="img/icons/menu/account.svg" alt="Account"/></span>
+<div class="logo">
+<span class="pull-left"><div on:click={() => {mainRoute.set('/menu')}}><img src="img/icons/menu/menu.svg" alt="Menu"/></div></span>
+<img on:click={() => {mainRoute.set('/')}} src="img/icons/general/logo.png" alt="logo"/>
+<span class="pull-right"><div on:click={() => {mainRoute.set('/login')}}><img src="img/icons/menu/account.svg" alt="Account"/></div></span>
 </div>

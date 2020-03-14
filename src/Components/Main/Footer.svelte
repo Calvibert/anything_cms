@@ -1,17 +1,6 @@
 <script>
-// import { writable } from 'svelte/store';
 import { afterUpdate } from 'svelte';
 import { mainRoute } from '../../router.js';
-
-// let curRoute;
-// afterUpdate(() => {
-//     if ($mainRoute === '/') {
-//         curRoute = '/';
-//         return 0;
-//     }
-//     curRoute = '/'+$mainRoute.split('/')[1];
-// });
-console.log($mainRoute);
 </script>
 
 <style>

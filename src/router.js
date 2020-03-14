@@ -10,15 +10,14 @@ let firstRoute = window.location.pathname;
 
 // Routes are defined here
 const routes = {
-    '/': Search,
+    '/': Home,
     '/home': Home,
     '/search': Search,
     '/login': Registration,
     '/signup': Registration,
     '/view': View
 };
-console.log(firstRoute);
+
 export default routes;
-// setContext('curRoute', '/');
 export const mainRoute = writable(firstRoute);
 export const subRoute = writable('/');
