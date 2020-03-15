@@ -1,5 +1,6 @@
 <script>
 import validator from 'validator';
+import { mainRoute } from '../../router.js';
 
 let email;
 let username;
@@ -93,19 +94,31 @@ td {
 <tr>
 <td class="td-icon">Img</td>
 <td>
-<label for="email">Username/Email</label>
-<input type="text" name="email" id="email" bind:value={email} required/>
+<input type="text" name="email" id="email" bind:value={email} placeholder="Username/email" required/>
 </td>
 </tr>
 
 <tr>
 <td class="td-icon">Img</td>
 <td>
-<label for="password">Password</label>
-<input type="password" name="password" id="password" bind:value={password} required/>
+<input type="password" name="password" id="password" bind:value={password} placeholder="Password" required/>
 </td>
 </tr>
 </table>
 </div>
 
 <div on:click={signup} class="btn" type="submit">LOGIN</div>
+
+
+<table style="text-align: center">
+<tr>
+<td>FB</td>
+<td>TW</td>
+<td>GG</td>
+</tr>
+</table>
+
+<div style="text-align: center">
+<p>Forgot password? <span on:click={() => {mainRoute.set('/reset')}}>Reset your password</span></p>
+<p>Don't have an account? <span on:click={() => {mainRoute.set('/signup')}}>Sign up</span></p>
+</div>

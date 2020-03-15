@@ -1,5 +1,6 @@
 <script>
 import validator from 'validator';
+import { mainRoute } from '../../router.js';
 
 let email;
 let username;
@@ -85,6 +86,8 @@ td {
 }
 </style>
 
+<span on:click={() => {mainRoute.set('/login')}}>Back</span>
+
 {#if error}
 <h2>{error}</h2>
 {/if}
@@ -93,27 +96,32 @@ td {
 <tr>
 <td class="td-icon">Img</td>
 <td>
-<label for="email">Email</label>
-<input type="text" name="email" id="email" bind:value={email} required/>
+<input type="text" name="email" id="email" bind:value={email} placeholder="Email" required/>
 </td>
 </tr>
 
 <tr>
 <td class="td-icon">Img</td>
 <td>
-<label for="username">Username</label>
-<input type="text" name="username" id="username" bind:value={username} required/>
+<input type="text" name="username" id="username" bind:value={username} placeholder="Username" required/>
 </td>
 </tr>
 
 <tr>
 <td class="td-icon">Img</td>
 <td>
-<label for="password">Password</label>
-<input type="password" name="password" id="password" bind:value={password} required/>
+<input type="password" name="password" id="password" bind:value={password} placeholder="Password" required/>
 </td>
 </tr>
 </table>
 </div>
 
 <div on:click={signup} class="btn" type="submit">SIGN UP</div>
+
+<table style="text-align: center">
+<tr>
+<td>FB</td>
+<td>TW</td>
+<td>GG</td>
+</tr>
+</table>

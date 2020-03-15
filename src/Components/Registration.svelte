@@ -4,10 +4,10 @@
     import { writable } from 'svelte/store';
     import { getContext } from 'svelte';
 
-    import loggedIn from '../user.js';
+    import { session } from '../session.js';
     import routes, { mainRoute } from '../router.js';
-    import Signup from './Registration/Signup.svelte';
     import Login from './Registration/Login.svelte';
+    import Account from './Account/Account.svelte';
 
     function select() {
         mainRoute.set(this.value);
@@ -23,10 +23,10 @@
 <!-- <div transition:scale="{{duration: 300, delay: 0, opacity: 0, start: 0.25, easing: quintOut}}"> -->
 <!-- <div transition:slide="{{delay: 0, duration: 300, easing: quintOut}}"> -->
 
-{#if $mainRoute === '/login'}
-<Login />
+{#if $session['logged']}
+<Account/>
 {:else}
-<Signup />
+<Login />
 {/if}
 
 </div>
