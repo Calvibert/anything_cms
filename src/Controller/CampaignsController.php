@@ -9,6 +9,8 @@ use App\Model\Entity\Post;
 
 class CampaignsController extends AppController
 {
+    private $numberOfPopularCampaignsDefault = 10;
+
     public function initialize()
     {
         parent::initialize();
@@ -29,7 +31,9 @@ class CampaignsController extends AppController
             $campaignEntity = $this->Campaigns->newEntity($this->request->getData());
             $campaignEntity->listed_by = $this->Auth->user('id');
             $campaignEntity->product_id = $productId;
-            $this->Campaigns->save($campaignEntity);
+            $campaignId = $this->Campaigns->save($campaignEntity);
+
+            $this->savePriceTiers($campaignId, $productId);
 
             return $this->redirect(['action' => 'index']);
         }
@@ -57,5 +61,22 @@ class CampaignsController extends AppController
         ])->toArray();
 
         $this->set('campaigns', $results);
+    }
+
+    public function getPopular()
+    {
+        $this->viewBuilder()->layout('ajax');
+
+        $popularCampaigns = $this->Campaigns->getPopular($this->numberOfPopularCampaignsDefault);
+
+        $this->set('popularCampaigns', $popularCampaigns);
+    }
+
+    private function savePriceTiers($campaignId, $productId)
+    {
+        $priceTierData = $this->request->getData();
+        $priceTierData['campaign_id'] = $campaignId;
+        $priceTierData['product_id'] = $productId;
+        return $this->PriceTiers->saveTiers($priceTierData);
     }
 }

@@ -7,6 +7,7 @@
         'title' => 'text',
         'model_part' => 'text',
         'description' => 'textarea',
-        'photo' => 'photo'
-    ]
+        'photo' => 'photo',
+    ],
+    'defaults' => []
 ]) ?>

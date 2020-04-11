@@ -12,7 +12,13 @@
         'product' => [
             'type' => 'autofill',
             'field' => 'products'
-        ]
+        ],
+        'price1' => 'number',
+        'qty_price1' => 'number',
+        'price2' => 'number',
+        'qty_price2' => 'number',
+        'price3' => 'number',
+        'qty_price3' => 'number',
     ],
     'defaults' => [
         'start' => date("Y-m-d", strtotime("+1 day")),

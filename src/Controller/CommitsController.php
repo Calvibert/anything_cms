@@ -24,7 +24,8 @@ class CommitsController extends AppController
     public function add()
     {
         if ($this->request->is('post')) {
-            
+            $entity = $this->Commits->newEntity($this->request->getData(''));
+            $this->save($entity);
         }
     }
 }
